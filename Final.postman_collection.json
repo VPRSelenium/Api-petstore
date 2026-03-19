@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "fb860211-573b-45c3-a058-65e1458cdb8c",
+		"name": "Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47841671"
+	},
+	"item": [
+		{
+			"name": "Valid Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test\r",
+							"    (\"Status code is 200\", function () {\r",
+							"        pm.expect(pm.response.code).to.eql(200);\r",
+							"        pm.expect(pm.response.status).to.eql(\"OK\");   \r",
+							"\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Status time\",()=>\r",
+							"    {\r",
+							"        pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"\r",
+							"    });\r",
+							"   \r",
+							"let jsondata = pm.response.json();\r",
+							"pm.test(\"To verify json body\",()=>{\r",
+							"    pm.expect(jsondata.id).to.be.a('number');\r",
+							"    pm.expect(jsondata.category).to.be.an('object');\r",
+							"    pm.expect(jsondata.category.id).to.be.a('number');\r",
+							"    pm.expect(jsondata.category.name).to.be.a('string');\r",
+							"    pm.expect(jsondata.name).to.be.a('string');\r",
+							"    pm.expect(jsondata.photoUrls).to.be.an('array');\r",
+							"    pm.expect(jsondata.tags).to.be.an('array');\r",
+							"    pm.expect(jsondata.tags[0].id).to.be.a('number');\r",
+							"    pm.expect(jsondata.tags[0].name).to.be.a('string');\r",
+							"    pm.expect(jsondata.status).to.be.a('string');\r",
+							"\r",
+							"   \r",
+							"    pm.expect(jsondata.category.name).to.eql('string');\r",
+							"    pm.expect(jsondata.name).to.eql('doggie');\r",
+							"    pm.expect(jsondata.photoUrls[0]).to.eql('string');\r",
+							"    pm.expect(jsondata.tags[0].name).to.eql('string');\r",
+							"    pm.expect(jsondata.status).to.eql('available');\r",
+							"   pm.expect(jsondata.status).to.be.oneOf([\"available\", \"pending\", \"sold\"]);\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Capture and log ID\", () => \r",
+							"{ \r",
+							"    let jsondata = pm.response.json();\r",
+							"\r",
+							"console.log(\"Captured Pet ID from response:\", jsondata.id);\r",
+							"pm.collectionVariables.set(\"id\", jsondata.id);\r",
+							"console.log(\"Collection variable ID now:\", pm.collectionVariables.get(\"id\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURl}}",
+					"host": [
+						"{{BaseURl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"    pm.expect(pm.response.status).to.eql(\"Method Not Allowed\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"time\",()=>\r",
+							"{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//200 response ok\r",
+							"//201 created\r",
+							"//405 method not Allowed (for invalid input)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURl}}/findByStatus",
+					"host": [
+						"{{BaseURl}}"
+					],
+					"path": [
+						"findByStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Update request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"cat\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseURl}}",
+					"host": [
+						"{{BaseURl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validation exception 405",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURl}}/abc",
+					"host": [
+						"{{BaseURl}}"
+					],
+					"path": [
+						"abc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid ID 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.status).to.eql(\"Bad Request\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": -1\r\n  \"name\": \"cat\",\r\n  \"status\": \"available\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURl}}",
+					"host": [
+						"{{BaseURl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404 Not found",
+			"request": {
+				"method": "PUT",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Requst",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "pet not found 404",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "invalid id supplied 400",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURl}}/-1",
+					"host": [
+						"{{BaseURl}}"
+					],
+					"path": [
+						"-1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURl",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}

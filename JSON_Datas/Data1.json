@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Pradhiv Venkatakeswaran",
+      "email": "pradhiv.qa@example.com",
+      "role": "QA Analyst",
+      "active": true
+    },
+    {
+      "id": "2",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "Developer",
+      "active": true
+    },
+    {
+      "id": "3",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "role": "Project Manager",
+      "active": false
+    },
+    {
+      "id": "4",
+      "name": "Arun Kumar",
+      "email": "arun.kumar@example.com",
+      "role": "Tester",
+      "active": true
+    },
+    {
+      "id": "5",
+      "name": "Meena R",
+      "email": "meena.r@example.com",
+      "role": "Business Analyst",
+      "active": true
+    },
+    {
+      "name": " Venkatakeswaran N",
+      "email": "venkatesh.qa@example.com",
+      "role": "QA Senior Analyst",
+      "active": "active",
+      "id": "abb6"
+    }
+  ]
+}
