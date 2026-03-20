@@ -1,0 +1,75 @@
+{
+  "info": {
+    "_postman_id": "ea2ad013-3a41-4c22-9976-ae6c65c7f944",
+    "name": "FileUpload",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47841671",
+    "_collection_link": "https://go.postman.co/collection/47841671-ea2ad013-3a41-4c22-9976-ae6c65c7f944?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "PostingFile",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "",
+              "type": "file",
+              "uuid": "086b720a-637c-4828-b85e-1fcdda26dce7",
+              "src": "/D:/DOWNLOADS/DOC-20260109-WA0015_ (2)"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/files/DOC-20260109-WA0015_ (2)",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "files",
+            "DOC-20260109-WA0015_ (2)"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
